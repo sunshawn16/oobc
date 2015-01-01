@@ -73,8 +73,12 @@ public class Measure {
         return value;
     }
 
-    public String show(Unit unit) {
 
+    public Measure plus(Measure measure) {
+        return new Measure(this.unit.getBasic(), this.getRatedValue() + measure.getRatedValue());
+    }
+
+    public String show(Unit unit) {
         while (!unit.getName().equals(this.unit.getName())) {
             this.value = this.value * this.unit.getRate();
             this.unit = this.unit.getNext();
@@ -82,12 +86,26 @@ public class Measure {
         return this.value + " " + unit.getName();
     }
 
-    public Measure plus(Measure measure) {
-        return new Measure(this.unit.getbasic(), this.getRatedValue() + measure.getRatedValue());
+    public String showInInch() {
+        return "Measure(" + this.getValue() + ", " + this.getUnit().getName() + ") ==> " + show(LengthUnit.INCH);
     }
 
-    public void showInInch() {
-        System.out.println("Measure(" + this.getValue() + ", " + this.getUnit().getName() + ") ==> " + show(LengthUnit.INCH));
+    public String show() {
+        int multiple = this.getValue() / this.getUnit().getHigherUnit().getRate();
+        int remainder = this.getValue() % this.getUnit().getHigherUnit().getRate();
+        String result = "";
+        if (multiple != 0) {
+            result = multiple + " " + this.getUnit().getHigherUnit().getName();
+        }
+        if (remainder != 0) {
+            if (multiple != 0) {
+                result += " ";
+            }
+            result = result + remainder + " " + this.getUnit().getName();
+        } else {
+            result = result + "";
+        }
+        return result;
     }
 }
 

@@ -8,5 +8,9 @@ public interface Unit {
 
     String getName();
 
-    Unit getbasic();
+    Unit getBasic();
+
+    Unit getHighest();
+
+    Unit getHigherUnit();
 }

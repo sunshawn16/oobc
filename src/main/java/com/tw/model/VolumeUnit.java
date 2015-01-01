@@ -5,6 +5,7 @@ public enum VolumeUnit implements Unit {
 
     private final int rate;
     private Unit next;
+
     private String name;
 
 
@@ -30,8 +31,26 @@ public enum VolumeUnit implements Unit {
     }
 
     @Override
-    public VolumeUnit getbasic() {
+    public VolumeUnit getBasic() {
        return TSP;
+    }
+
+    @Override
+    public VolumeUnit getHighest() {
+        return OZ;
+    }
+
+    @Override
+    public Unit getHigherUnit() {
+        Unit higherUnit = getBasic();
+        for (VolumeUnit volumeUnit : VolumeUnit.values()) {
+            if (null == volumeUnit.getNext()) {
+                higherUnit = getBasic();
+            } else if (volumeUnit.getNext().getName().equals(this.getName())) {
+                higherUnit = volumeUnit;
+            }
+        }
+        return higherUnit;
     }
 
 }

@@ -1,16 +1,16 @@
 package com.tw;
 
 import com.tw.model.VolumeUnit;
+import org.junit.Ignore;
 import org.junit.Test;
 
-import static com.tw.model.LengthUnit.*;
 import static com.tw.Measure.*;
-import static com.tw.model.VolumeUnit.TBSP;
-import static com.tw.model.VolumeUnit.TSP;
+import static com.tw.model.LengthUnit.*;
+import static com.tw.model.VolumeUnit.*;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.*;
 
-public class LengthTest {
+public class MeasureTest {
     @Test
     public void test3MileEquals3Mile() throws Exception {
         Measure mile1 = createMile(MILE, 3);
@@ -71,7 +71,6 @@ public class LengthTest {
     @Test
     public void Yard1ShouldEqualsFeet3AndShowInFeet() throws Exception {
         Measure yard = createYard(YARD, 1);
-        Measure feet = createFeet(FEET, 3);
 
         assertThat(yard.show(FEET), is("3 FEET"));
     }
@@ -120,8 +119,38 @@ public class LengthTest {
     }
 
     @Test
+    public void TBSP2ShouldEqualsOZ1AndShowInTBSP() throws Exception {
+        assertThat(createOZ(OZ,1).show(TBSP),is("2 TBSP"));
+    }
+
+    @Test
     public void showInInch() throws Exception {
-        createFeet(FEET, 2).showInInch();
-        createYard(YARD, 2).showInInch();
+        assertThat(createFeet(FEET, 2).showInInch(),is("Measure(2, FEET) ==> 24 INCH"));
+        assertThat(createYard(YARD, 2).showInInch(),is("Measure(2, YARD) ==> 72 INCH"));
+    }
+
+    @Test
+    public void Yard1750shouldShowAs1750Yard() throws Exception {
+        assertThat(createYard(YARD, 1750).show(), is("1750 YARD"));
+    }
+
+    @Test
+    public void Inch12ShouldShowAsFeet1() throws Exception {
+        assertThat(createInch(INCH, 12).show(), is("1 FEET"));
+    }
+
+    @Test
+    public void Inch15ShouldShowAsFeet1Inch3() throws Exception {
+        assertThat(createInch(INCH,15).show(),is("1 FEET 3 INCH"));
+    }
+
+    @Test
+    public void TSP5ShouldShowAs1TBSP2TSP() throws Exception {
+        assertThat(createTSP(TSP, 5).show(),is("1 TBSP 2 TSP"));
+    }
+
+    @Ignore
+    public void TSP10ShouldShowAs1OZ1TBSP1TSP() throws Exception {
+        assertThat(createTSP(TSP,10).show(),is("1 OZ 1 TBSP 1 TSP"));
     }
 }
