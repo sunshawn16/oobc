@@ -10,23 +10,23 @@ import static org.junit.Assert.assertThat;
 public class LengthTest {
     @Test
     public void test3MileEquals3Mile() throws Exception {
-        Length mile1 = Length.createMile(Unit.MILE,3);
-        Length mile2 = Length.createMile(Unit.MILE,3);
-        assertEquals(mile1,mile2);
+        Length mile1 = Length.createMile(Unit.MILE, 3);
+        Length mile2 = Length.createMile(Unit.MILE, 3);
+        assertEquals(mile1, mile2);
     }
 
     @Test
     public void test3MileEquals2Mile() throws Exception {
-        Length mile1 = Length.createMile(Unit.MILE,3);
-        Length mile2 = Length.createMile(Unit.MILE,2);
+        Length mile1 = Length.createMile(Unit.MILE, 3);
+        Length mile2 = Length.createMile(Unit.MILE, 2);
 
         assertNotEquals(mile1, mile2);
     }
 
     @Test
     public void test3MileEquals4Mile() throws Exception {
-        Length mile1 = Length.createMile(Unit.MILE,3);
-        Length mile2 = Length.createMile(Unit.MILE,4);
+        Length mile1 = Length.createMile(Unit.MILE, 3);
+        Length mile2 = Length.createMile(Unit.MILE, 4);
         assertNotEquals(mile1, mile2);
     }
 
@@ -59,7 +59,7 @@ public class LengthTest {
     }
 
     @Test
-      public void Yard3ShouldNotEqualsFeet4() throws Exception {
+    public void Yard3ShouldNotEqualsFeet4() throws Exception {
         Length yard = Length.createYard(Unit.YARD, 3);
         Length feet = Length.createFeet(Unit.FEET, 4);
         assertNotEquals(yard, feet);
@@ -72,6 +72,7 @@ public class LengthTest {
 
         System.out.println(yard.show(Unit.FEET));
     }
+
     @Test
     public void Feet1ShouldEqualsInch12AndShowInInch() throws Exception {
         Length feet = Length.createFeet(Unit.FEET, 1);
@@ -85,7 +86,7 @@ public class LengthTest {
         Length inch11 = Length.createInch(Unit.INCH, 11);
         Length feet = Length.createFeet(Unit.FEET, 2);
 
-        assertThat(inch13.plus(inch11), is(feet.getValue()));    //plus 不该返回一个新的length ,所以只比较value
+        assertThat(inch13.plus(inch11), is(feet.getRatedValue()));    //plus 不该返回一个新的length ,所以只比较value
     }
 
     @Test
@@ -102,6 +103,12 @@ public class LengthTest {
         Volume volume2 = new Volume(Unit.OZ, 3);
         Volume result = new Volume(Unit.OZ, 4);
 
-        assertThat(volume1.plus(volume2),is(result.getValue()));
+        assertThat(volume1.plus(volume2), is(result.getRatedValue()));
+    }
+
+    @Test
+    public void showInInch() throws Exception {
+        Length.createFeet(Unit.FEET, 2).showInInch();
+        Length.createYard(Unit.YARD, 2).showInInch();
     }
 }

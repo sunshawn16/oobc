@@ -21,4 +21,8 @@ public final class Length extends UnitStore{
     public static Length createYard(Unit yard, int value) {
         return new Length(yard, value);
     }
+
+    public void showInInch() {
+        System.out.println("LENGTH("+ this.getValue() +", "+ this.getUnit().getName() +") ==> "+show(Unit.INCH));
+    }
 }
