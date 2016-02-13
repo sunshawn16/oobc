@@ -1,7 +1,7 @@
 package com.tw;
 
 public enum Unit {
-    INCH(1, null,"INCH"), FEET(12, INCH,"FEET"), YARD(3, FEET,"YARD"), MILE(1760, YARD,"MILE"), TBSP(3, INCH, "TBSP"), TSP(1, INCH, "TSP"), OZ(6, INCH, "OZ");
+    INCH(1, null,"INCH"), FEET(12, INCH,"FEET"), YARD(3, FEET,"YARD"), MILE(1760, YARD,"MILE"), TSP(1, null, "TSP"), TBSP(3, TSP, "TBSP"),OZ(2, TBSP, "OZ");
     private final int rate;
     private Unit next;
     private String name;
@@ -25,4 +25,6 @@ public enum Unit {
     public String getName() {
         return name;
     }
+
+
 }

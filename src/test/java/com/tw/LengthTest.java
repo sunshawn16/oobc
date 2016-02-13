@@ -88,4 +88,20 @@ public class LengthTest {
         assertThat(inch13.plus(inch11), is(feet.getValue()));    //plus 不该返回一个新的length ,所以只比较value
     }
 
+    @Test
+    public void TBSP1EqualsTSP3() throws Exception {
+        Volume volume1 = new Volume(Unit.TBSP, 1);
+        Volume volume2 = new Volume(Unit.TSP, 3);
+
+        assertEquals(volume1, volume2);
+    }
+
+    @Test
+    public void TBSP2plusOZ3EqualsOZ4() throws Exception {
+        Volume volume1 = new Volume(Unit.TBSP, 2);
+        Volume volume2 = new Volume(Unit.OZ, 3);
+        Volume result = new Volume(Unit.OZ, 4);
+
+        assertThat(volume1.plus(volume2),is(result.getValue()));
+    }
 }
