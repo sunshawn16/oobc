@@ -1,6 +1,6 @@
 package com.tw;
 
-public class Length {
+public final class Length {
     private int value;
     private Unit unit;
 
@@ -57,5 +57,9 @@ public class Length {
             this.unit = this.unit.getNext();
         }
         return this.value + " "+unit.getName();
+    }
+
+    public int plus(Length length) {
+        return this.getValue()+length.getValue();
     }
 }

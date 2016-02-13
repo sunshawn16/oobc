@@ -2,8 +2,10 @@ package com.tw;
 
 import org.junit.Test;
 
+import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
+import static org.junit.Assert.assertThat;
 
 public class LengthTest {
     @Test
@@ -67,18 +69,23 @@ public class LengthTest {
     public void Yard1ShouldEqualsFeet3AndShowInFeet() throws Exception {
         Length yard = Length.createYard(Unit.YARD, 1);
         Length feet = Length.createFeet(Unit.FEET, 3);
-//        assertEquals(yard, feet);
 
         System.out.println(yard.show(Unit.FEET));
     }
     @Test
     public void Feet1ShouldEqualsInch12AndShowInInch() throws Exception {
         Length feet = Length.createFeet(Unit.FEET, 1);
-//        assertEquals(yard, feet);
 
         System.out.println(feet.show(Unit.INCH));
     }
 
+    @Test
+    public void Inch13PlusInch11EaqualsFeet2() throws Exception {
+        Length inch13 = Length.createInch(Unit.INCH, 13);
+        Length inch11 = Length.createInch(Unit.INCH, 11);
+        Length feet = Length.createFeet(Unit.FEET, 2);
 
+        assertThat(inch13.plus(inch11), is(feet.getValue()));    //plus 不该返回一个新的length ,所以只比较value
+    }
 
 }
