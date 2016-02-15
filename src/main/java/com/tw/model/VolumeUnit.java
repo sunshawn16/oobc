@@ -1,7 +1,7 @@
 package com.tw.model;
 
-public enum  VolumeUnit implements Unit {
-    TSP(1, null, "TSP"), TBSP(3, TSP, "TBSP"),OZ(2, TBSP, "OZ");
+public enum VolumeUnit implements Unit {
+    TSP(1, null, "TSP"), TBSP(3, TSP, "TBSP"), OZ(2, TBSP, "OZ");
 
     private final int rate;
     private Unit next;
@@ -28,4 +28,10 @@ public enum  VolumeUnit implements Unit {
     public String getName() {
         return name;
     }
+
+    @Override
+    public VolumeUnit getbasic() {
+       return TSP;
+    }
+
 }

@@ -2,11 +2,11 @@ package com.tw.model;
 
 public interface Unit {
 
-    public int getRate();
+    int getRate();
 
-    public Unit getNext();
+    Unit getNext();
 
-    public String getName();
+    String getName();
 
-
+    Unit getbasic();
 }

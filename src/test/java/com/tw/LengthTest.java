@@ -73,14 +73,14 @@ public class LengthTest {
         Measure yard = createYard(YARD, 1);
         Measure feet = createFeet(FEET, 3);
 
-        System.out.println(yard.show(FEET));
+        assertThat(yard.show(FEET), is("3 FEET"));
     }
 
     @Test
     public void Feet1ShouldEqualsInch12AndShowInInch() throws Exception {
         Measure feet = createFeet(FEET, 1);
 
-        System.out.println(feet.show(INCH));
+        assertThat(feet.show(INCH),is("12 INCH"));
     }
 
     @Test
@@ -89,7 +89,17 @@ public class LengthTest {
         Measure inch11 = createInch(INCH, 11);
         Measure feet = createFeet(FEET, 2);
 
-        assertThat(inch13.plus(inch11), is(feet));   
+        assertThat(inch13.plus(inch11), is(feet));
+    }
+
+    @Test
+    public void Feet3PlusYard2EqualsYard3() throws Exception {
+        Measure feet = createFeet(FEET, 3);
+        Measure yard = createYard(YARD, 2);
+        Measure result = createYard(YARD, 3);
+
+        assertThat(feet.plus(yard), is(result));
+
     }
 
     @Test
@@ -106,7 +116,7 @@ public class LengthTest {
         Measure volume2 = createOZ(VolumeUnit.OZ, 3);
         Measure result = createOZ(VolumeUnit.OZ, 4);
 
-        assertThat(volume1.plus(volume2), is(result.getRatedValue()));
+        assertThat(volume1.plus(volume2), is(result));
     }
 
     @Test

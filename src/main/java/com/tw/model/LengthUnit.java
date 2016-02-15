@@ -30,4 +30,9 @@ public enum LengthUnit implements Unit {
         return name;
     }
 
+    @Override
+    public LengthUnit getbasic() {
+        return INCH;
+    }
+
 }

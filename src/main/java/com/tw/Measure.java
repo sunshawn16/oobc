@@ -73,7 +73,7 @@ public class Measure {
         return value;
     }
 
-    public String show(Unit unit) {   ///需求没有
+    public String show(Unit unit) {
 
         while (!unit.getName().equals(this.unit.getName())) {
             this.value = this.value * this.unit.getRate();
@@ -83,7 +83,7 @@ public class Measure {
     }
 
     public Measure plus(Measure measure) {
-        return new Measure(this.unit, this.getRatedValue() + measure.getRatedValue());
+        return new Measure(this.unit.getbasic(), this.getRatedValue() + measure.getRatedValue());
     }
 
     public void showInInch() {
