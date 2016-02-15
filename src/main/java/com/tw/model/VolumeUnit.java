@@ -1,6 +1,6 @@
-package com.tw;
+package com.tw.model;
 
-public enum  VolumeUnit implements Unit{
+public enum  VolumeUnit implements Unit {
     TSP(1, null, "TSP"), TBSP(3, TSP, "TBSP"),OZ(2, TBSP, "OZ");
 
     private final int rate;

@@ -1,11 +1,12 @@
 package com.tw;
 
+import com.tw.model.VolumeUnit;
 import org.junit.Test;
 
-import static com.tw.LengthUnit.*;
+import static com.tw.model.LengthUnit.*;
 import static com.tw.Measure.*;
-import static com.tw.VolumeUnit.TBSP;
-import static com.tw.VolumeUnit.TSP;
+import static com.tw.model.VolumeUnit.TBSP;
+import static com.tw.model.VolumeUnit.TSP;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.*;
 
@@ -88,7 +89,7 @@ public class LengthTest {
         Measure inch11 = createInch(INCH, 11);
         Measure feet = createFeet(FEET, 2);
 
-        assertThat(inch13.plus(inch11), is(feet.getRatedValue()));    //plus 不该返回一个新的length
+        assertThat(inch13.plus(inch11), is(feet));   
     }
 
     @Test

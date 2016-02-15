@@ -1,5 +1,8 @@
 package com.tw;
 
+import com.tw.model.LengthUnit;
+import com.tw.model.Unit;
+
 public class Measure {
     private int value;
     private Unit unit;
@@ -79,9 +82,8 @@ public class Measure {
         return this.value + " " + unit.getName();
     }
 
-    public int plus(Measure measure) {
-
-        return this.getRatedValue() + measure.getRatedValue();
+    public Measure plus(Measure measure) {
+        return new Measure(this.unit, this.getRatedValue() + measure.getRatedValue());
     }
 
     public void showInInch() {

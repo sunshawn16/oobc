@@ -1,6 +1,6 @@
-package com.tw;
+package com.tw.model;
 
-public enum LengthUnit implements Unit{
+public enum LengthUnit implements Unit {
 
     INCH(1, null,"INCH"), FEET(12, INCH,"FEET"), YARD(3, FEET,"YARD"), MILE(1760, YARD,"MILE");
 
