@@ -1,7 +1,6 @@
 package com.tw;
 
 import com.tw.model.VolumeUnit;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import static com.tw.Measure.*;
@@ -140,6 +139,11 @@ public class MeasureTest {
     }
 
     @Test
+    public void TSP6ShouldShowAsOZ1() throws Exception {
+        assertThat(createTSP(TSP, 6).show(), is("1 OZ"));
+    }
+
+    @Test
     public void Inch15ShouldShowAsFeet1Inch3() throws Exception {
         assertThat(createInch(INCH,15).show(),is("1 FEET 3 INCH"));
     }
@@ -149,8 +153,9 @@ public class MeasureTest {
         assertThat(createTSP(TSP, 5).show(),is("1 TBSP 2 TSP"));
     }
 
-    @Ignore
+    @Test
     public void TSP10ShouldShowAs1OZ1TBSP1TSP() throws Exception {
-        assertThat(createTSP(TSP,10).show(),is("1 OZ 1 TBSP 1 TSP"));
+        assertThat(createTSP(TSP, 10).show(),is("1 OZ 1 TBSP 1 TSP"));
     }
+
 }

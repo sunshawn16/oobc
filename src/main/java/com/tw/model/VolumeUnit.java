@@ -1,7 +1,7 @@
 package com.tw.model;
 
 public enum VolumeUnit implements Unit {
-    TSP(1, null, "TSP"), TBSP(3, TSP, "TBSP"), OZ(2, TBSP, "OZ");
+    TSP(1, null, "TSP") , TBSP(3, TSP, "TBSP"), OZ(2, TBSP, "OZ");
 
     private final int rate;
     private Unit next;
@@ -41,16 +41,14 @@ public enum VolumeUnit implements Unit {
     }
 
     @Override
-    public Unit getHigherUnit() {
-        Unit higherUnit = getBasic();
-        for (VolumeUnit volumeUnit : VolumeUnit.values()) {
-            if (null == volumeUnit.getNext()) {
-                higherUnit = getBasic();
-            } else if (volumeUnit.getNext().getName().equals(this.getName())) {
-                higherUnit = volumeUnit;
-            }
+    public int getCumulativeRate() {
+        Unit unit = getHighest();
+        int rate = 1;
+        while (!this.getName().equals(unit.getName())){
+            rate = rate * unit.getRate();
+            unit = unit.getNext();
         }
-        return higherUnit;
+        return rate;
     }
 
 }

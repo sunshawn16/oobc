@@ -91,21 +91,36 @@ public class Measure {
     }
 
     public String show() {
-        int multiple = this.getValue() / this.getUnit().getHigherUnit().getRate();
-        int remainder = this.getValue() % this.getUnit().getHigherUnit().getRate();
+        Unit unit = this.getUnit().getHighest();
         String result = "";
+        int currentRate = this.getUnit().getCumulativeRate();
+        int multiple = this.getValue() / currentRate;
+        int remainder = this.getValue() - multiple * currentRate;
+        do {
+            result = showWithUnit(unit, result, multiple);
+            currentRate = currentRate / unit.getRate();
+            if (currentRate == 0) break;
+            multiple = remainder / currentRate;
+            remainder = remainder - multiple * currentRate;
+
+            if (null != unit.getNext()) {
+                unit = unit.getNext();
+            } else break;
+        } while (remainder != 0 || multiple != 0);
+
+        return result;
+    }
+
+    private String showWithUnit(Unit unit, String result, int multiple) {
         if (multiple != 0) {
-            result = multiple + " " + this.getUnit().getHigherUnit().getName();
-        }
-        if (remainder != 0) {
-            if (multiple != 0) {
+            if (!result.equals("")) {
                 result += " ";
             }
-            result = result + remainder + " " + this.getUnit().getName();
-        } else {
-            result = result + "";
+            result = result + multiple + " " + unit.getName();
         }
         return result;
     }
+
+
 }
 

@@ -12,5 +12,5 @@ public interface Unit {
 
     Unit getHighest();
 
-    Unit getHigherUnit();
+    int getCumulativeRate();
 }

@@ -31,26 +31,24 @@ public enum LengthUnit implements Unit {
     }
 
     @Override
-    public LengthUnit getBasic() {
+    public Unit getBasic() {
         return INCH;
     }
 
     @Override
-    public LengthUnit getHighest() {
+    public Unit getHighest() {
         return MILE;
     }
 
     @Override
-    public Unit getHigherUnit() {
-        Unit higherUnit = getBasic();
-        for (LengthUnit lengthUnit : LengthUnit.values()) {
-            if (null == lengthUnit.getNext()) {
-                higherUnit = getBasic();
-            } else if (lengthUnit.getNext().getName().equals(this.getName())) {
-                higherUnit = lengthUnit;
-            }
+    public int getCumulativeRate() {
+        Unit unit = getHighest();
+        int rate = 1;
+        while (!this.getName().equals(unit.getName())){
+            rate = rate * unit.getRate();
+            unit = unit.getNext();
         }
-        return higherUnit;
+        return rate;
     }
 
 
