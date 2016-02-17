@@ -97,7 +97,6 @@ public class MeasureTest {
         Measure result = createYard(YARD, 3);
 
         assertThat(feet.plus(yard), is(result));
-
     }
 
     @Test
@@ -119,43 +118,38 @@ public class MeasureTest {
 
     @Test
     public void TBSP2ShouldEqualsOZ1AndShowInTBSP() throws Exception {
-        assertThat(createOZ(OZ,1).show(TBSP),is("2 TBSP"));
+        assertThat(createOZ(OZ,1).show(new DefaultShower()),is("1 OZ"));
     }
 
     @Test
     public void showInInch() throws Exception {
-        assertThat(createFeet(FEET, 2).showInInch(),is("Measure(2, FEET) ==> 24 INCH"));
-        assertThat(createYard(YARD, 2).showInInch(),is("Measure(2, YARD) ==> 72 INCH"));
+        assertThat(createFeet(FEET, 2).show(new InchShower()),is("Measure(2, FEET) ==> 24 INCH"));
+        assertThat(createYard(YARD, 2).show(new InchShower()),is("Measure(2, YARD) ==> 72 INCH"));
     }
 
     @Test
     public void Yard1750shouldShowAs1750Yard() throws Exception {
-        assertThat(createYard(YARD, 1750).show(), is("1750 YARD"));
-    }
-
-    @Test
-    public void Inch12ShouldShowAsFeet1() throws Exception {
-        assertThat(createInch(INCH, 12).show(), is("1 FEET"));
+        assertThat(createYard(YARD, 1750).show(new DefaultShower()), is("1750 YARD"));
     }
 
     @Test
     public void TSP6ShouldShowAsOZ1() throws Exception {
-        assertThat(createTSP(TSP, 6).show(), is("1 OZ"));
+        assertThat(createTSP(TSP, 6).show(new DefaultShower()), is("1 OZ"));
     }
 
     @Test
     public void Inch15ShouldShowAsFeet1Inch3() throws Exception {
-        assertThat(createInch(INCH,15).show(),is("1 FEET 3 INCH"));
+        assertThat(createInch(INCH,15).show(new DefaultShower()),is("1 FEET 3 INCH"));
     }
 
     @Test
     public void TSP5ShouldShowAs1TBSP2TSP() throws Exception {
-        assertThat(createTSP(TSP, 5).show(),is("1 TBSP 2 TSP"));
+        assertThat(createTSP(TSP, 5).show(new DefaultShower()),is("1 TBSP 2 TSP"));
     }
 
     @Test
     public void TSP10ShouldShowAs1OZ1TBSP1TSP() throws Exception {
-        assertThat(createTSP(TSP, 10).show(),is("1 OZ 1 TBSP 1 TSP"));
+        assertThat(createTSP(TSP, 10).show(new DefaultShower()),is("1 OZ 1 TBSP 1 TSP"));
     }
 
 }

@@ -1,6 +1,5 @@
 package com.tw;
 
-import com.tw.model.LengthUnit;
 import com.tw.model.Unit;
 
 public class Measure {
@@ -78,48 +77,11 @@ public class Measure {
         return new Measure(this.unit.getBasic(), this.getRatedValue() + measure.getRatedValue());
     }
 
-    public String show(Unit unit) {
-        while (!unit.getName().equals(this.unit.getName())) {
-            this.value = this.value * this.unit.getRate();
-            this.unit = this.unit.getNext();
-        }
-        return this.value + " " + unit.getName();
+    public String show(Shower shower) {
+        return shower.show(this);
     }
 
-    public String showInInch() {
-        return "Measure(" + this.getValue() + ", " + this.getUnit().getName() + ") ==> " + show(LengthUnit.INCH);
-    }
 
-    public String show() {
-        Unit unit = this.getUnit().getHighest();
-        String result = "";
-        int currentRate = this.getUnit().getCumulativeRate();
-        int multiple = this.getValue() / currentRate;
-        int remainder = this.getValue() - multiple * currentRate;
-        do {
-            result = showWithUnit(unit, result, multiple);
-            currentRate = currentRate / unit.getRate();
-            if (currentRate == 0) break;
-            multiple = remainder / currentRate;
-            remainder = remainder - multiple * currentRate;
-
-            if (null != unit.getNext()) {
-                unit = unit.getNext();
-            } else break;
-        } while (remainder != 0 || multiple != 0);
-
-        return result;
-    }
-
-    private String showWithUnit(Unit unit, String result, int multiple) {
-        if (multiple != 0) {
-            if (!result.equals("")) {
-                result += " ";
-            }
-            result = result + multiple + " " + unit.getName();
-        }
-        return result;
-    }
 
 
 }
