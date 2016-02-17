@@ -68,20 +68,6 @@ public class MeasureTest {
     }
 
     @Test
-    public void Yard1ShouldEqualsFeet3AndShowInFeet() throws Exception {
-        Measure yard = createYard(YARD, 1);
-
-        assertThat(yard.show(FEET), is("3 FEET"));
-    }
-
-    @Test
-    public void Feet1ShouldEqualsInch12AndShowInInch() throws Exception {
-        Measure feet = createFeet(FEET, 1);
-
-        assertThat(feet.show(INCH),is("12 INCH"));
-    }
-
-    @Test
     public void Inch13PlusInch11EaqualsFeet2() throws Exception {
         Measure inch13 = createInch(INCH, 13);
         Measure inch11 = createInch(INCH, 11);
